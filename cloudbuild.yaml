@@ -1,0 +1,10 @@
+steps:
+- name: envoyproxy/envoy-build-ubuntu
+  args: ['bazel', 'build', '--google_default_credentials', '--remote_http_cache=https://storage.googleapis.com/$PROJECT_ID-cache', '-c', 'dbg', '//docker:envoy.tar']
+- name: gcr.io/cloud-builders/docker
+  args: ['load', '-i', 'bazel-bin/docker/envoy.tar']
+- name: gcr.io/cloud-builders/docker
+  args: ['tag', 'bazel/docker:envoy', 'gcr.io/$PROJECT_ID/envoy']
+images:
+- 'gcr.io/$PROJECT_ID/envoy'
+timeout: 18000s
