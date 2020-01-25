@@ -1,14 +1,8 @@
 workspace(name = "envoy_container")
 
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load(":def.bzl", "project")
-
-http_file(
-    name = "eds_patch",
-    urls = ["https://github.com/envoyproxy/envoy/commit/3271f34b419482729f62f9d7931a67d8517de8e1.patch"],
-    sha256 = "37960acec670eb9d74273de6eabe40aecd6a271cb8fd239bc21b99dfc14b0f1b",
-)
 
 # setup envoy and dependencies
 http_archive(
@@ -16,8 +10,6 @@ http_archive(
     sha256 = project.envoy.sha256,
     url = project.envoy.url,
     strip_prefix = project.envoy.prefix,
-    patches = ["@eds_patch//file:downloaded"],
-    patch_args = ["-p1"],
 )
 load("@envoy//bazel:api_binding.bzl", "envoy_api_binding")
 envoy_api_binding()
