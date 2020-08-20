@@ -1,7 +1,7 @@
 project = struct(
     envoy = struct(
-        url = "https://github.com/envoyproxy/envoy/archive/v1.13.0.tar.gz",
-        sha256 = "a16a4662f724ed48742ee9e3eaedf64d576b672b742c1023c0946f370c7abd0e",
-        prefix = "envoy-1.13.0",
+        url = "https://github.com/envoyproxy/envoy/archive/v1.15.0.tar.gz",
+        prefix = "envoy-1.15.0",
+        sha256 = "38bd41e5229532abbeccba7b87d80c8664e915ec6f780a60a6b7ef1818458b5a",
     ),
 )
